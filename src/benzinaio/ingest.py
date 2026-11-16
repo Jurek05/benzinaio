@@ -79,7 +79,7 @@ def clean_prezzi(raw: pd.DataFrame) -> pd.DataFrame:
     # Scarta i prezzi fuori scala rispetto alla mediana del carburante.
     mediana = df.groupby("carburante")["prezzo"].transform("median")
     ok = df["prezzo"].between(mediana * MIN_RATIO, mediana * MAX_RATIO)
-    cols = ["id_impianto", "carburante", "prezzo", "is_self"]
+    cols = ["id_impianto", "carburante", "prezzo", "is_self", "data_comunicazione"]
     return df.loc[ok, cols].reset_index(drop=True)
 
 
